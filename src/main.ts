@@ -6,16 +6,18 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import Bugsnag from '@bugsnag/js';
 import BugsnagPluginExpress from '@bugsnag/plugin-express';
+import * as morgan from 'morgan';
 
 dotenv.config();
 
 Bugsnag.start({
-  apiKey: '16964c7d87b9d1d49b878ffabfb20d60',
+  apiKey: process.env.BUGSNAG_KEY,
   plugins: [BugsnagPluginExpress]
 })
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(morgan('tiny'));
 
   app.enableCors()
 
@@ -42,7 +44,7 @@ async function bootstrap() {
   app.use(bugsnagMiddleware.errorHandler);
 
   try {
-    throw new Error('test error bugsnag');
+    // throw new Error();
   } catch (e) {
     Bugsnag.notify(e);
   }
