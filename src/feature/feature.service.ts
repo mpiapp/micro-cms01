@@ -16,12 +16,10 @@ export class FeatureService {
         ){}
 
     async create(body: CreateFeatureDTO): Promise<Feature> {
-        body.name = body.name.split(' ').join('_').toUpperCase()
         return this.featureModel.create(body)
     }
 
     async update(id: IdDTO, body: UpdateFeatureDTO ): Promise<Feature> {
-        if( body.name ) body.name = body.name.split(' ').join('_').toUpperCase()
         return this.featureModel.findByIdAndUpdate(id, body)
     }
 
@@ -30,7 +28,7 @@ export class FeatureService {
     }
     
     async find(q): Promise<Feature[]> {
-        let condition = q["name"] ? { name: { $regex: '.*' + q['name'].split(' ').join('_').toUpperCase() + '.*' } } : {}
+        let condition = q["name"] ? { name: { $regex: '.*' + q['name'] + '.*' } } : {}
         return this.featureModel.find(condition)
     }
 

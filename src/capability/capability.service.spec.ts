@@ -30,7 +30,6 @@ describe('CapabilityService', () => {
 
   it('should update a capability', async () => {
     expect(await service.update(MockId,CapabilityPayload)).toEqual(SuccsessUpdateCapability(StringMockId));
-    expect(await service.update(MockId,CapabilityPayloadSmallName)).toEqual(SuccsessUpdateCapability(StringMockId));
   });
 
   it('should get a capability', async () => {

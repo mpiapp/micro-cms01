@@ -19,7 +19,6 @@ export class RolesService implements GlobalRoleInterface {
         ){}
 
     async create(body: CreateRoleDTO): Promise<Role> {
-        body.name = body.name.split(' ').join('_').toUpperCase()
         return this.roleModel.create(body)
     }
 
@@ -29,7 +28,6 @@ export class RolesService implements GlobalRoleInterface {
     }
 
     async create_dep(body: CreateRoleDepDTO): Promise<any> {
-        body.name = body.name.split(' ').join('_').toUpperCase()
 
         // check whether feature exist in the database
         for( var i in body.module_ids ) {
@@ -42,7 +40,6 @@ export class RolesService implements GlobalRoleInterface {
     }
 
     async update_dep(id: IdDTO, body: UpdateRoleDepDTO): Promise<any> {
-        if ( body && body.name )  body.name = body.name.split(' ').join('_').toUpperCase()
 
         // check whether feature exist in the database
         for( var i in body.module_ids ) {
@@ -64,7 +61,7 @@ export class RolesService implements GlobalRoleInterface {
     }
     
     async find(q): Promise<Role[]> {
-        let condition = q["name"] ? { role: { $regex: '.*' + q['name'].split(' ').join('_').toUpperCase() + '.*' } } : {}
+        let condition = q["name"] ? { role: { $regex: '.*' + q['name'] + '.*' } } : {}
         return this.roleModel.find(condition)
     }
 

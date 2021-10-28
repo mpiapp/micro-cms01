@@ -12,12 +12,10 @@ export class CapabilityService {
     constructor(@InjectModel(Capabilities.name) private readonly capabilitiesModel: Model<CapabilitiesDocument>){}
 
     async create(body: CreateCapabilitiesDTO): Promise<Capabilities> {
-        body.name = body.name.split(' ').join('_').toUpperCase()
         return this.capabilitiesModel.create(body)
     }
 
     async update(id: IdDTO, body: UpdateCapabilitiesDTO ): Promise<Capabilities> {
-        body.name = body.name.split(' ').join('_').toUpperCase()
         return this.capabilitiesModel.findByIdAndUpdate(id, body)
     }
 
@@ -26,7 +24,7 @@ export class CapabilityService {
     }
     
     async find(q): Promise<Capabilities[]> {
-        let condition = q["name"] ? { name: { $regex: '.*' + q['name'].split(' ').join('_').toUpperCase() + '.*' } } : {}
+        let condition = q["name"] ? { name: { $regex: '.*' + q['name'] + '.*' } } : {}
         return this.capabilitiesModel.find(condition)
     }
 

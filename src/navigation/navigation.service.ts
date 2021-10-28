@@ -18,7 +18,6 @@ export class NavigationService {
         ){}
 
     async create(body: CreateNavigationDTO): Promise<Module> {
-        body.name = body.name.split(' ').join('_').toUpperCase()
         return this.moduleModel.create(body)
     }
 
@@ -31,7 +30,7 @@ export class NavigationService {
     }
     
     async find(q): Promise<Module[]> {
-        let condition = q["name"] ? { role: { $regex: '.*' + q['name'].split(' ').join('_').toUpperCase() + '.*' } } : {}
+        let condition = q["name"] ? { role: { $regex: '.*' + q['name'] + '.*' } } : {}
         return this.moduleModel.find(condition)
     }
 
