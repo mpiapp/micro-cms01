@@ -10,6 +10,7 @@ export const FeatureControllerMock = {
         if( ['234'].includes(id) ) return { 
             id, ...SuccsessCreateFeatureWithUndIDWithoutCI 
         }
+        if( ['789'].includes(id) ) return null
         return { id, ...SuccsessCreateFeature } 
     }),
     find: jest.fn().mockImplementation(() => { return ArrayOfObjecFeature }),

@@ -58,6 +58,6 @@ export const ArrayOfObjectNavigation = [
         name: 'BUYER_BAR',
         link: 'https://www.google.com/webhp?ie=UTF-8&rct=j',
         flag: 'BUYER',
-        feature_ids: ["123", "234"]
+        feature_ids: ["123", "234", "789"]
     }
 ]

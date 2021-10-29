@@ -60,12 +60,17 @@ export class NavigationController {
         for( var element in modules ) { 
             if( modules[element].feature_ids && modules[element].feature_ids.length > 0 ) {
                 for( var el in modules[element].feature_ids ) {
+
+                    console.log('TEST',modules[element].feature_ids[el].valueOf())
+
                     var temporary_feature_object = await this.moduleService.findFeatureById({ id: modules[element].feature_ids[el].valueOf() })
-                    temporary_features.push({
-                        _id: temporary_feature_object._id.valueOf(),
-                        name: temporary_feature_object.name,
-                        capability_ids: temporary_feature_object.capability_ids
-                    })
+                    if( temporary_feature_object ) {
+                        temporary_features.push({
+                            _id: temporary_feature_object._id.valueOf(),
+                            name: temporary_feature_object.name,
+                            capability_ids: temporary_feature_object.capability_ids
+                        })
+                    }
                 }
                 result.push({
                     id: modules[0]["_id"].valueOf(),

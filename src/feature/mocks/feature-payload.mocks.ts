@@ -98,5 +98,11 @@ export const ArrayOfObjecFeature = [
         name: 'MANAGE_BUYER',
         capability_ids : [ "id4", "id5" ],
         flag: 'VENDOR'
+    },
+    {
+        _id: "789",
+        name: 'MANAGE_VENDOR',
+        capability_ids : [],
+        flag: 'VENDOR'
     }
 ]
