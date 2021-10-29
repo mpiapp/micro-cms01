@@ -68,8 +68,9 @@ export class FeatureController {
                 }
 
                 result.push({
-                    id: features[0]["_id"].valueOf(),
+                    _id: features[0]["_id"].valueOf(),
                     name: features[element].name,
+                    flag: features[element].flag,
                     capabilities: temporary_capabilities
                 })
 
@@ -77,8 +78,9 @@ export class FeatureController {
 
             } else {
                 result.push({
-                    id: features[0]["_id"].valueOf(),
+                    _id: features[0]["_id"].valueOf(),
                     name : features[element].name,
+                    flag: features[element].flag,
                     capabilities : []
                 })
             }
