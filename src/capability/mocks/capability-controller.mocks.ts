@@ -4,9 +4,10 @@ export const CapabilityControllerMock = {
     // ==================================== controller ====================================
     create: jest.fn().mockImplementation((dto) => { return { id: expect.anything(), ...dto } }),
     findById: jest.fn().mockImplementation((id) => { 
-        if( ['id1','id2','id4', 'id5'].includes(id) ) return { 
+        if( ['id1','id2','id4'].includes(id) ) return { 
             id, ...SuccsessCreateCapabilityWithUndID 
         }
+        if( ['id5'].includes(id) ) return null
         return { id, ...SuccsessCreateCapability } 
     }),
     find: jest.fn().mockImplementation(() => { return ArrayOfObjectCapability }),

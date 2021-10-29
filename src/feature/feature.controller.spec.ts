@@ -56,6 +56,6 @@ describe('FeatureController', () => {
 
   it(`should get a list of features and it's capabilities (Controller)`, async () => {
     var test = await controller.find_cap()
-    expect(test).toEqual([{"capabilities": [{"_id": "id", "name": "CREATE"}, {"_id": "id", "name": "CREATE"}], "id": "123", "name": "COMPANY_PROFILE"}, {"capabilities": [], "id": "123", "name": "BUYER_STATUS"}, {"capabilities": [{"_id": "id", "name": "CREATE"}, {"_id": "id", "name": "CREATE"}], "id": "123", "name": "MANAGE_BUYER"}])
+    expect(test).toEqual([{"_id": "123", "capabilities": [{"_id": "id", "name": "CREATE"}, {"_id": "id", "name": "CREATE"}], "flag": "BUYER", "name": "COMPANY_PROFILE"}, {"_id": "234", "capabilities": [], "flag": "BUYER", "name": "BUYER_STATUS"}, {"_id": "456", "capabilities": [{"_id": "id", "name": "CREATE"}], "flag": "VENDOR", "name": "MANAGE_BUYER"}])
   })
 });

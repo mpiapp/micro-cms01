@@ -60,15 +60,24 @@ export class FeatureController {
         for( var element in features ) { 
             if( features[element].capability_ids && features[element].capability_ids.length > 0 ) {
                 for( var el in features[element].capability_ids ) {
+
+                    console.log('ID', features[element].capability_ids[el].valueOf())
+
                     var temporary_capability_object = await this.featureService.findCapabilityById({ id: features[element].capability_ids[el].valueOf() })
-                    temporary_capabilities.push({
-                        _id: temporary_capability_object._id.valueOf(),
-                        name: temporary_capability_object.name,
-                    })
+
+                    console.log('test', temporary_capability_object )
+
+                    if( temporary_capability_object ) {
+                        temporary_capabilities.push({
+                            _id: temporary_capability_object._id.valueOf(),
+                            name: temporary_capability_object.name,
+                        })
+                    }
+
                 }
 
                 result.push({
-                    _id: features[0]["_id"].valueOf(),
+                    _id: features[element]["_id"].valueOf(),
                     name: features[element].name,
                     flag: features[element].flag,
                     capabilities: temporary_capabilities
@@ -78,7 +87,7 @@ export class FeatureController {
 
             } else {
                 result.push({
-                    _id: features[0]["_id"].valueOf(),
+                    _id: features[element]["_id"].valueOf(),
                     name : features[element].name,
                     flag: features[element].flag,
                     capabilities : []
