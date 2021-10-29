@@ -63,6 +63,6 @@ describe('NavigationController', () => {
 
   it(`should get a list of features and it's capabilities (Controller)`, async () => {
     var test = await controller.findFeatures()
-    expect(test).toEqual([{"features": [], "flag": "VENDOR", "id": "id1", "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "MENU_BAR"}, {"features": [{"_id": "id", "capability_ids": ["id1", "id2"], "name": "COMPANY_PROFILE"}], "flag": "BUYER", "id": "id1", "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "ADMIN_BAR"}, {"features": [{"_id": "id", "capability_ids": ["id1", "id2"], "name": "COMPANY_PROFILE"}, {"_id": "id", "capability_ids": [], "name": "COMPANY_PROFILE"}], "flag": "BUYER", "id": "id1", "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "BUYER_BAR"}])
+    expect(test).toEqual([{"_id": "id1", "features": [], "flag": "VENDOR", "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "MENU_BAR"}, {"_id": "id2", "features": [{"_id": "id", "capability_ids": ["id1", "id2"], "name": "COMPANY_PROFILE"}], "flag": "BUYER", "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "ADMIN_BAR"}, {"_id": "id3", "features": [{"_id": "id", "capability_ids": ["id1", "id2"], "name": "COMPANY_PROFILE"}, {"_id": "id", "capability_ids": [], "name": "COMPANY_PROFILE"}], "flag": "BUYER", "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "BUYER_BAR"}])
   })
 });

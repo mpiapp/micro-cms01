@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { CreateRoleDepDTO } from './dto/create-role-dep.dto';
 import { CreateRoleDTO } from './dto/create-role.dto';
@@ -63,6 +63,47 @@ export class RolesController implements GlobalRoleInterface {
     @Get()
     async find(@Query() name: string): Promise<Role[]> {
         return this.rolesService.find(name)
+    }
+
+    @Patch('modules')
+    async findModules(): Promise<any> {
+        const roles = await this.rolesService.find({})
+        let result = []
+        let temporary_modules = []
+
+        for( var element in roles ) {
+            if( roles[element] && roles[element].module_ids.length > 0 ) {
+                for( var el in roles[element].module_ids ) {
+                    var temporary_module_object = await this.rolesService.findModuleById({ id: roles[element].module_ids[el].valueOf() })
+
+                    if( temporary_module_object ) {
+                        temporary_modules.push({
+                            _id: temporary_module_object._id.valueOf(),
+                            name: temporary_module_object.name,
+                            link: temporary_module_object.link,
+                            feature_ids: temporary_module_object.feature_ids
+                        })
+                    }
+                }
+                result.push({
+                    _id: roles[element]["_id"].valueOf(),
+                    name : roles[element].name,
+                    flag : roles[element].flag,
+                    modules: temporary_modules
+                })
+                temporary_modules = []
+
+            } else {
+                result.push({
+                    _id: roles[element]["_id"].valueOf(),
+                    name : roles[element].name,
+                    flag : roles[element].flag,
+                    modules : []
+                })
+            }
+        }
+
+        return result
     }
 
     @ApiParam({ name: 'id', required: true })

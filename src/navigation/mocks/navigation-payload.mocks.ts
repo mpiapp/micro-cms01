@@ -20,6 +20,13 @@ export const SuccsessCreateNavigation = {
     flag: 'VENDOR'
 }
 
+export const SuccsessCreateNavigationUnId = {
+    _id: stringId,
+    name: 'MENU_BAR',
+    link: 'https://www.google.com/webhp?ie=UTF-8&rct=j',
+    flag: 'VENDOR'
+}
+
 export const SuccsessGetNavigationById = (id) => {
     return {
         id,
@@ -31,7 +38,7 @@ export const SuccsessGetNavigationById = (id) => {
 
 export const SuccsessUpdateNavigation = (id) => {
     return {
-        id: id,
+        id,
         name: 'MENU_BAR',
         link: 'https://www.google.com/webhp?ie=UTF-8&rct=j',
         flag: 'VENDOR'

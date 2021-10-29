@@ -104,4 +104,9 @@ describe('RolesController', () => {
     var test = await controller.find_dep({ id: "NO_FEATURE" })
     expect(test).toEqual([{"_id": "id1", "isTrue": false, "name": "MENU_BAR"}, {"_id": "id2", "isTrue": false, "name": "ADMIN_BAR"}, {"_id": "id3", "isTrue": false, "name": "BUYER_BAR"}])
   })
+
+  it(`should get a list of modules (Controller)`, async () => {
+    var test = await controller.findModules()
+    expect(test).toEqual([{"_id": "role1", "flag": "BUYER", "modules": [{"_id": "id", "feature_ids": undefined, "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "MENU_BAR"}, {"_id": "id", "feature_ids": undefined, "link": "https://www.google.com/webhp?ie=UTF-8&rct=j", "name": "MENU_BAR"}], "name": "ADMIN"}, {"_id": "role2", "flag": "BUYER", "modules": [], "name": undefined}, {"_id": "role3", "flag": "VEMDOR", "modules": [], "name": undefined}])
+  })
 });

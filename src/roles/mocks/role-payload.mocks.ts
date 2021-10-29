@@ -72,16 +72,19 @@ export const SuccsessUpdateRole = (id) => {
 
 export const ArrayOfObjectRole = [
     {
+        _id: 'role1',
         name: 'ADMIN',
         flag: 'BUYER',
-        module_ids: ["id1", "234"]
+        module_ids: ["id1", "id2"]
     },
-    {
+    {   
+        _id: 'role2',
         role: 'PICKER',
         flag: 'BUYER',
-        module_ids: ["id1"]
+        module_ids: ["id3"]
     },
     {
+        _id: 'role3',
         role: 'SLEEPER',
         flag: 'VEMDOR',
         module_ids: []

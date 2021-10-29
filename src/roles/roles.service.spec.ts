@@ -13,7 +13,7 @@ import { Capabilities } from '../capability/schema/capability.schema';
 import { NavigationService } from '../navigation/navigation.service';
 import { Module } from '../navigation/schema/navigation.schema';
 import { NavigationServiceMock } from '../navigation/mocks/navigation-service.mocks';
-import { ArrayOfObjectNavigation } from '../navigation/mocks/navigation-payload.mocks';
+import { ArrayOfObjectNavigation, SuccsessGetNavigationById } from '../navigation/mocks/navigation-payload.mocks';
 
 describe('RolesService', () => {
   let service: RolesService;
@@ -89,6 +89,10 @@ describe('RolesService', () => {
 
   it('should get list of modules', async () => {
     expect(await service.findModules()).toEqual(ArrayOfObjectNavigation);
+  });
+
+  it('should get a module by id', async () => {
+    expect(await service.findModuleById(MockId)).toEqual(SuccsessGetNavigationById(StringMockId));
   });
 
 });

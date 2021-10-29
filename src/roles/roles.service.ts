@@ -72,4 +72,8 @@ export class RolesService implements GlobalRoleInterface {
     async findModules(): Promise<any> {
         return this.moduleService.find({})
     }
+
+    async findModuleById(id): Promise<any> {
+        return this.moduleService.findById(id.id)
+    }
 }
