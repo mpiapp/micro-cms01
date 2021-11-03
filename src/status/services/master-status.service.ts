@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IMasterStatusService } from '../interfaces/implements/master-status.interface';
 import { TStatus } from '../interfaces/types/statusCreate.type';
+import { TStatusPaginate } from '../interfaces/types/statusPaginate.type';
 import { Status, StatusDocument } from '../schema/status.schema';
 
 @Injectable()
@@ -13,5 +14,39 @@ export class MasterStatusService implements IMasterStatusService {
 
   async save(param: TStatus): Promise<Status> {
     return this.model.create(param);
+  }
+
+  async getOne(id: string): Promise<Status> {
+    return this.model.findById(id);
+  }
+
+  async getAll(): Promise<Status[]> {
+    return this.model.find({ isDeleted: false });
+  }
+
+  async getPaginate(params: TStatusPaginate): Promise<any> {
+    const { skip, limit } = params;
+    return this.model.aggregate([
+      {
+        $match: { isDeleted: false },
+      },
+      {
+        $facet: {
+          metadata: [
+            {
+              $count: 'total',
+            },
+          ],
+          data: [
+            {
+              $skip: skip,
+            },
+            {
+              $limit: limit,
+            },
+          ],
+        },
+      },
+    ]);
   }
 }

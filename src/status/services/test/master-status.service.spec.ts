@@ -1,7 +1,10 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Status } from './../../schema/status.schema';
-import { mockSampleDataStatus } from './../../../../test/mocks/Status/Sample-data.mocks';
+import {
+  mockSampleDataStatus,
+  mockSampleDataStatuses,
+} from './../../../../test/mocks/Status/Sample-data.mocks';
 import { mockStatusService } from './../../../../test/mocks/Status/Service.mocks';
 import { MasterStatusService } from '../master-status.service';
 
@@ -32,5 +35,21 @@ describe('MasterStatusService', () => {
         name: 'Open',
       }),
     ).toEqual(mockSampleDataStatus);
+  });
+
+  it('should be get One', async () => {
+    expect(await service.getOne(expect.any(String))).toEqual(
+      mockSampleDataStatus,
+    );
+  });
+
+  it('should be get All', async () => {
+    expect(await service.getAll()).toEqual(mockSampleDataStatuses);
+  });
+
+  it('should be get Paginate', async () => {
+    expect(await service.getPaginate({ skip: 0, limit: 10 })).toEqual([
+      mockSampleDataStatus,
+    ]);
   });
 });
