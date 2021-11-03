@@ -6,10 +6,12 @@ import { Capabilities, CapabilitiesSchema } from './schema/capability.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Capabilities.name, schema: CapabilitiesSchema }]),
+    MongooseModule.forFeature([
+      { name: Capabilities.name, schema: CapabilitiesSchema },
+    ]),
   ],
   providers: [CapabilityService],
   controllers: [CapabilityController],
-  exports: [CapabilityService]
+  exports: [CapabilityService],
 })
 export class CapabilityModule {}

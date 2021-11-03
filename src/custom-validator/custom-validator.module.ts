@@ -3,5 +3,5 @@ import { FeatureModule } from '../feature/feature.module';
 
 @Module({})
 export class CustomValidatorModule {
-    imports: [FeatureModule]
+  imports: [FeatureModule];
 }

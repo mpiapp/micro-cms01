@@ -12,17 +12,17 @@ dotenv.config();
 
 Bugsnag.start({
   apiKey: process.env.BUGSNAG_KEY,
-  plugins: [BugsnagPluginExpress]
-})
+  plugins: [BugsnagPluginExpress],
+});
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(morgan('tiny'));
 
-  app.enableCors()
+  app.enableCors();
 
   // set pipes
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe());
 
   // set container for validate
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
@@ -32,11 +32,11 @@ async function bootstrap() {
     .setTitle('MPI CMS Microservice APIs')
     .setDescription('Descriptions for MPI Content Management Service APIs')
     .setVersion('1.0')
-    .build()
+    .build();
 
-    const document = SwaggerModule.createDocument(app, config)
+  const document = SwaggerModule.createDocument(app, config);
 
-    SwaggerModule.setup('/api', app, document)
+  SwaggerModule.setup('/api', app, document);
 
   // set bugsnag
   const bugsnagMiddleware = Bugsnag.getPlugin('express');
@@ -49,6 +49,6 @@ async function bootstrap() {
     Bugsnag.notify(e);
   }
 
-  await app.listen( process.env.PORT || 3010 );
+  await app.listen(process.env.PORT || 3010);
 }
 bootstrap();

@@ -1,13 +1,16 @@
-import { Injectable } from "@nestjs/common";
-import { isMongoId, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
+import { Injectable } from '@nestjs/common';
+import {
+  isMongoId,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from 'class-validator';
 
 @ValidatorConstraint({ name: 'UserExists', async: true })
 @Injectable()
 export class FeaturesMongoIdRule implements ValidatorConstraintInterface {
-
   async validate(features: string[]) {
-    for( var element in features ) {
-      if( !isMongoId(features[element]) ) return false
+    for (const element in features) {
+      if (!isMongoId(features[element])) return false;
     }
     return true;
   }
@@ -20,10 +23,9 @@ export class FeaturesMongoIdRule implements ValidatorConstraintInterface {
 @ValidatorConstraint({ name: 'Buyer Or Vendor', async: true })
 @Injectable()
 export class BuyerOrVendorRule implements ValidatorConstraintInterface {
-
   async validate(buyer_vendor: string[]) {
-    for( var element in buyer_vendor ) {
-      if( !['BUYER', 'VENDOR'].includes(buyer_vendor[element]) ) return false
+    for (const element in buyer_vendor) {
+      if (!['BUYER', 'VENDOR'].includes(buyer_vendor[element])) return false;
     }
     return true;
   }
@@ -32,5 +34,3 @@ export class BuyerOrVendorRule implements ValidatorConstraintInterface {
     return `Flag must be one of VENDOR or BUYER`;
   }
 }
-
-
