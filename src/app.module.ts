@@ -8,8 +8,6 @@ import { NavigationModule } from './navigation/navigation.module';
 import { CustomValidatorModule } from './custom-validator/custom-validator.module';
 import { CapabilityModule } from './capability/capability.module';
 import { StatusModule } from './status/status.module';
-import { MasterStatusService } from './master-status/master-status.service';
-import { ConfigStatusService } from './config-status/config-status.service';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -26,6 +24,6 @@ dotenv.config();
     StatusModule,
   ],
   controllers: [AppController],
-  providers: [AppService, MasterStatusService, ConfigStatusService],
+  providers: [AppService],
 })
 export class AppModule {}
