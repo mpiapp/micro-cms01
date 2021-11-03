@@ -9,4 +9,5 @@ export const mockStatusService = {
   findById: jest.fn().mockReturnValue(mockSampleDataStatus),
   aggregate: jest.fn().mockReturnValue([mockSampleDataStatus]),
   select: jest.fn().mockReturnValue(mockSampleDataStatus),
+  findByIdAndUpdate: jest.fn().mockReturnValue(mockSampleDataStatus),
 };

@@ -7,6 +7,5 @@ export interface IMasterStatusService {
   getOne(id: string): Promise<Status>;
   getAll(): Promise<Status[]>;
   getPaginate(params: TStatusPaginate): Promise<any>;
-  //   update(param: any): Promise<Status>;
   //   delete(id: string): Promise<Status>;
 }
