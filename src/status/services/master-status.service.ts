@@ -49,4 +49,16 @@ export class MasterStatusService implements IMasterStatusService {
       },
     ]);
   }
+
+  async update(id: string, params: TStatus[]): Promise<Status> {
+    return this.model.findByIdAndUpdate(id, {
+      $set: { next: params },
+    });
+  }
+
+  async delete(id: string): Promise<Status> {
+    return this.model.findByIdAndUpdate(id, {
+      $set: { isDeleted: true },
+    });
+  }
 }

@@ -6,6 +6,7 @@ import {
 } from './../../test/mocks/Status/Sample-data.mocks';
 import { mockStatusService } from './../../test/mocks/Status/Service.mocks';
 import { Status } from './schema/status.schema';
+import { ConfigStatusService } from './services/config-status.service';
 import { MasterStatusService } from './services/master-status.service';
 import { StatusController } from './status.controller';
 
@@ -17,6 +18,7 @@ describe('StatusController', () => {
       controllers: [StatusController],
       providers: [
         MasterStatusService,
+        ConfigStatusService,
         {
           provide: getModelToken(Status.name),
           useValue: mockStatusService,
@@ -149,5 +151,95 @@ describe('StatusController', () => {
       limit: 10,
       data: null,
     });
+  });
+
+  it('should be assign status', async () => {
+    expect(
+      await controller.assign({
+        id: expect.any(String),
+        name: 'Open',
+      }),
+    ).toEqual({
+      errors: null,
+      status: 200,
+      message: 'Assign Status Success',
+      data: mockSampleDataStatus,
+    });
+  });
+
+  it('should be unassign status', async () => {
+    expect(
+      await controller.unassign({
+        id: expect.any(String),
+        name: 'Open',
+      }),
+    ).toEqual({
+      errors: null,
+      status: 200,
+      message: 'UnAssign Status Success',
+      data: mockSampleDataStatus,
+    });
+  });
+
+  it('should be assign status failed', async () => {
+    mockStatusService.findByIdAndUpdate.mockRejectedValue(new Error());
+
+    try {
+      await controller.assign({
+        id: expect.any(String),
+        name: 'Open',
+      });
+    } catch (error) {
+      expect(error).toEqual({
+        errors: error,
+        status: 400,
+        message: 'Assign Status Failed',
+      });
+    }
+  });
+
+  it('should be unassign status failed', async () => {
+    try {
+      await controller.unassign({
+        id: expect.any(String),
+        name: 'Open',
+      });
+    } catch (error) {
+      expect(error).toEqual({
+        errors: error,
+        status: 400,
+        message: 'UnAssign Status Failed',
+      });
+    }
+  });
+
+  it('should be check status success', async () => {
+    expect(
+      await controller.checkStatus({
+        currentStatus: 'Open',
+        newStatus: 'Confirm',
+      }),
+    ).toEqual({
+      errors: null,
+      status: 200,
+      message: 'Status Check Success',
+    });
+  });
+
+  it('should be check status failed', async () => {
+    mockStatusService.findOne.mockRejectedValue(new Error());
+
+    try {
+      await controller.checkStatus({
+        currentStatus: 'Open',
+        newStatus: 'Confirm',
+      });
+    } catch (error) {
+      expect(error).toEqual({
+        errors: error,
+        status: 400,
+        message: 'UnAssign Status Failed',
+      });
+    }
   });
 });

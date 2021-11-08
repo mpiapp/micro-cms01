@@ -52,4 +52,23 @@ describe('MasterStatusService', () => {
       mockSampleDataStatus,
     ]);
   });
+
+  it('should be update status', async () => {
+    expect(
+      await service.update(expect.any(String), [
+        {
+          name: 'Open',
+        },
+        {
+          name: 'Test',
+        },
+      ]),
+    ).toEqual(mockSampleDataStatus);
+  });
+
+  it('should be delete status', async () => {
+    expect(await service.delete(expect.any(String))).toEqual(
+      mockSampleDataStatus,
+    );
+  });
 });

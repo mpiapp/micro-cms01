@@ -32,9 +32,22 @@ describe('ConfigStatusService', () => {
     ).toEqual(mockSampleDataStatus);
   });
 
-  it('should be unassign status', async () => {
+  it('should be unassign By Id status', async () => {
     expect(
       await service.unassign({ id: expect.any(String), name: 'Open' }),
+    ).toEqual(mockSampleDataStatus);
+  });
+
+  it('should be unassign By Id status', async () => {
+    expect(await service.bulkUnassign('Open')).toEqual(mockSampleDataStatus);
+  });
+
+  it('should be check master status', async () => {
+    expect(
+      await service.checkStatus({
+        currentStatus: 'Open',
+        newStatus: 'Confirm',
+      }),
     ).toEqual(mockSampleDataStatus);
   });
 });
