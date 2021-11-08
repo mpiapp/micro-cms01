@@ -1,6 +1,18 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ArrayOfObjecFeature, MockId, SuccsessGetFeatureById, SuccsessUpdateFeature, StringMockId, FeaturePayload, SuccsessCreateFeature, FeaturePayloadOnlyCapabilityIds, FeaturePayloadOnlyName, SuccsessUpdateFeatureOnlyCapabilityIds, SuccsessUpdateFeatureOnlyName } from './mocks/feature-payload.mocks';
+import {
+  ArrayOfObjecFeature,
+  MockId,
+  SuccsessGetFeatureById,
+  SuccsessUpdateFeature,
+  StringMockId,
+  FeaturePayload,
+  SuccsessCreateFeature,
+  FeaturePayloadOnlyCapabilityIds,
+  FeaturePayloadOnlyName,
+  SuccsessUpdateFeatureOnlyCapabilityIds,
+  SuccsessUpdateFeatureOnlyName,
+} from './mocks/feature-payload.mocks';
 import { Feature } from './schema/feature.schema';
 import { FeatureService } from './feature.service';
 import { FeatureServiceMock } from './mocks/feature-service.mocks';
@@ -15,15 +27,17 @@ describe('FeatureService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-      FeatureService, {
-        provide: getModelToken(Feature.name),
-        useValue: FeatureServiceMock
-      },
-      CapabilityService, {
-        provide: getModelToken(Capabilities.name),
-        useValue: CapabilityServiceMock
-      },
-    ],
+        FeatureService,
+        {
+          provide: getModelToken(Feature.name),
+          useValue: FeatureServiceMock,
+        },
+        CapabilityService,
+        {
+          provide: getModelToken(Capabilities.name),
+          useValue: CapabilityServiceMock,
+        },
+      ],
     }).compile();
 
     service = module.get<FeatureService>(FeatureService);
@@ -42,24 +56,36 @@ describe('FeatureService', () => {
   });
 
   it('should update a feature', async () => {
-    expect(await service.update(MockId,FeaturePayload)).toEqual(SuccsessUpdateFeature(StringMockId));
-    expect(await service.update(MockId,FeaturePayloadOnlyCapabilityIds)).toEqual(SuccsessUpdateFeatureOnlyCapabilityIds(StringMockId));
-    expect(await service.update(MockId,FeaturePayloadOnlyName)).toEqual(SuccsessUpdateFeatureOnlyName(StringMockId));
+    expect(await service.update(MockId, FeaturePayload)).toEqual(
+      SuccsessUpdateFeature(StringMockId),
+    );
+    expect(
+      await service.update(MockId, FeaturePayloadOnlyCapabilityIds),
+    ).toEqual(SuccsessUpdateFeatureOnlyCapabilityIds(StringMockId));
+    expect(await service.update(MockId, FeaturePayloadOnlyName)).toEqual(
+      SuccsessUpdateFeatureOnlyName(StringMockId),
+    );
   });
 
   it('should get a feature', async () => {
-    expect(await service.findById(MockId)).toEqual(SuccsessGetFeatureById(StringMockId));
+    expect(await service.findById(MockId)).toEqual(
+      SuccsessGetFeatureById(StringMockId),
+    );
   });
 
   it('should get list of features', async () => {
-    expect(await service.find({ name:'test' })).toEqual(ArrayOfObjecFeature);
+    expect(await service.find({ name: 'test' })).toEqual(ArrayOfObjecFeature);
   });
 
   it('should delete a feature', async () => {
-    expect(await service.delete(MockId)).toEqual(SuccsessGetFeatureById(StringMockId));
+    expect(await service.delete(MockId)).toEqual(
+      SuccsessGetFeatureById(StringMockId),
+    );
   });
 
   it('should get list of capabilities', async () => {
-    expect(await service.findCapabilityById(MockId)).toEqual(SuccsessGetCapabilityById(StringMockId));
+    expect(await service.findCapabilityById(MockId)).toEqual(
+      SuccsessGetCapabilityById(StringMockId),
+    );
   });
 });

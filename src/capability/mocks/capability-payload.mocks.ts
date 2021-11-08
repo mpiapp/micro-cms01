@@ -1,53 +1,53 @@
-const stringId = "id"
-const numberId = 1
+const stringId = 'id';
+const numberId = 1;
 
-export const StringMockId = stringId
+export const StringMockId = stringId;
 
 export const MockId = {
-    id: stringId
-}
+  id: stringId,
+};
 
 export const CapabilityPayload = {
-    name: 'CREATE',
-}
+  name: 'CREATE',
+};
 
 export const CapabilityPayloadSmallName = {
-    name: 'Create',
-}
+  name: 'Create',
+};
 
 export const SuccsessCreateCapability = {
-    id: stringId,
-    name: 'CREATE',
-}
+  id: stringId,
+  name: 'CREATE',
+};
 
 export const SuccsessCreateCapabilityWithUndID = {
-    _id: stringId,
-    id: stringId,
-    name: 'CREATE',
-}
+  _id: stringId,
+  id: stringId,
+  name: 'CREATE',
+};
 
 export const SuccsessGetCapabilityById = (id) => {
-    return {
-        id,
-        name: 'CREATE',
-    }
-}
+  return {
+    id,
+    name: 'CREATE',
+  };
+};
 
 export const SuccsessUpdateCapability = (id) => {
-    return {
-        id: id,
-        name: 'CREATE',
-    }
-}
+  return {
+    id: id,
+    name: 'CREATE',
+  };
+};
 
 export const ArrayOfObjectCapability = [
-    {
-        name: 'CREATE'
-    },
-    {
-        name: 'UPDATE'
-    },
-    {
-        name: 'DELETE',
-    }
-]
+  {
+    name: 'CREATE',
+  },
+  {
+    name: 'UPDATE',
+  },
+  {
+    name: 'DELETE',
+  },
+];
