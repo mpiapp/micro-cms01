@@ -20,7 +20,6 @@ export class StatusController {
   ) {}
 
   @Get('list')
-  @ApiQuery({ name: 'id', type: 'string' })
   @ApiOperation({ summary: 'List Status' })
   async getAll(): Promise<StatusesResponse> {
     try {
