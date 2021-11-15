@@ -89,7 +89,8 @@
       "navigation.module.ts",
       "custom-validator.module.ts",
       "capability.module.ts",
-      "payment.module.ts"
+      "payment.module.ts",
+      "companytype.module.ts"
     ]
   }
 }
