@@ -5,8 +5,8 @@ import { Document } from "mongoose";
 export class Payment {
     _id: string;
 
-    @Prop()
-    term: string;
+    @Prop({unique: true, index: true})
+    paymentTerm: string;
 
     @Prop({default: null})
     deletedAt: Date;
