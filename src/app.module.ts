@@ -8,7 +8,12 @@ import { NavigationModule } from './navigation/navigation.module';
 import { CustomValidatorModule } from './custom-validator/custom-validator.module';
 import { CapabilityModule } from './capability/capability.module';
 import { StatusModule } from './status/status.module';
+import { PaymentModule } from './payment/payment.module';
 import * as dotenv from 'dotenv';
+import { CompanyTypeModule } from './companytype/companytype.module';
+import { CompanyCategoryModule } from './companycategory/companycategory.module';
+import { LegalDocModule } from './legaldoc/legaldoc.module';
+import { CompanyLegalDocModule } from './companylegaldoc/companylegaldoc.module';
 dotenv.config();
 
 @Module({
@@ -22,6 +27,11 @@ dotenv.config();
     CustomValidatorModule,
     CapabilityModule,
     StatusModule,
+    PaymentModule,
+    CompanyTypeModule,
+    CompanyCategoryModule,
+    LegalDocModule,
+    CompanyLegalDocModule
   ],
   controllers: [AppController],
   providers: [AppService],

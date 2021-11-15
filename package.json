@@ -88,7 +88,12 @@
       "feature.module.ts",
       "navigation.module.ts",
       "custom-validator.module.ts",
-      "capability.module.ts"
+      "capability.module.ts",
+      "payment.module.ts",
+      "companytype.module.ts",
+      "companycategory.module.ts",
+      "legaldoc.module.ts",
+      "companylegaldoc.module.ts"
     ]
   }
 }
