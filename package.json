@@ -90,7 +90,8 @@
       "custom-validator.module.ts",
       "capability.module.ts",
       "payment.module.ts",
-      "companytype.module.ts"
+      "companytype.module.ts",
+      "companycategory.module.ts"
     ]
   }
 }

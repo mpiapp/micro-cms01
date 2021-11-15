@@ -7,7 +7,7 @@ import { CompanyTypeEditDTO } from './dto/companytype.edit.dto';
 import { CompanyType } from './schema/companytype.schema';
 
 @ApiTags('Company Type Module')
-@Controller('companytype')
+@Controller('company-type')
 export class CompanyTypeController {
     constructor(private companyTypeService: CompanyTypeService) {}
 

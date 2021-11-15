@@ -11,6 +11,7 @@ import { StatusModule } from './status/status.module';
 import { PaymentModule } from './payment/payment.module';
 import * as dotenv from 'dotenv';
 import { CompanyTypeModule } from './companytype/companytype.module';
+import { CompanyCategoryModule } from './companycategory/companycategory.module';
 dotenv.config();
 
 @Module({
@@ -26,6 +27,7 @@ dotenv.config();
     StatusModule,
     PaymentModule,
     CompanyTypeModule,
+    CompanyCategoryModule
   ],
   controllers: [AppController],
   providers: [AppService],
