@@ -92,7 +92,8 @@
       "payment.module.ts",
       "companytype.module.ts",
       "companycategory.module.ts",
-      "legaldoc.module.ts"
+      "legaldoc.module.ts",
+      "companylegaldoc.module.ts"
     ]
   }
 }

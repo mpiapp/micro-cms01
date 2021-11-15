@@ -13,6 +13,7 @@ import * as dotenv from 'dotenv';
 import { CompanyTypeModule } from './companytype/companytype.module';
 import { CompanyCategoryModule } from './companycategory/companycategory.module';
 import { LegalDocModule } from './legaldoc/legaldoc.module';
+import { CompanyLegalDocModule } from './companylegaldoc/companylegaldoc.module';
 dotenv.config();
 
 @Module({
@@ -29,7 +30,8 @@ dotenv.config();
     PaymentModule,
     CompanyTypeModule,
     CompanyCategoryModule,
-    LegalDocModule
+    LegalDocModule,
+    CompanyLegalDocModule
   ],
   controllers: [AppController],
   providers: [AppService],
